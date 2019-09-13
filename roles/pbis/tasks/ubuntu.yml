@@ -1,0 +1,22 @@
+---
+# tasks file for pbis on Ubuntu
+# repo info available: http://repo.pbis.beyondtrust.com/apt.html
+
+  - name: Ubuntu | add BeyondTrust PBIS open apt repo key
+    apt_key: url=http://repo.pbis.beyondtrust.com/apt/RPM-GPG-KEY-pbis
+    become: true
+
+  - name: Ubuntu | add BeyondTrust PBIS open apt repo
+    apt_repository: repo='deb http://repo.pbis.beyondtrust.com/apt pbiso main' state=present
+
+  - name: Ubuntu | apt-get update
+    apt: update_cache=yes cache_valid_time=3600
+
+  - name: Ubuntu | ajout de apt-transport-https
+    apt: name=apt-transport-https state=latest
+
+  - name: Ubuntu | apt-get install pbis-open-upgrade
+    apt: name=pbis-open-upgrade state=latest allow_unauthenticated=yes
+
+  - name: Ubuntu | apt-get install pbis-open
+    apt: name=pbis-open state=latest allow_unauthenticated=yes

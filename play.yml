@@ -1,0 +1,27 @@
+---
+
+# file: ubuntu.yml
+ - hosts: 127.0.0.1
+   become: true
+   connection: local 
+   
+# Settings for PBIS open    
+   vars:
+   - domain_fqdn: insead.org
+   - domain_netbios: INSEAD_ORG
+   - homedir_template: "%H/%U"
+   - login_shell_template: "/bin/bash"
+   - assume_default_domain: "True"
+   - require_membership_of: '"INSEAD_ORG\\GG_IT_Security" "INSEAD_ORG\\GD_IT_Operations_Centralized" "INSEAD_ORG\\svc_anslin"'
+   
+   vars_prompt:
+      - name: domain_user
+        prompt: "Please enter user in the following format i.e 9231.fayet"
+        private: no
+
+      - name: domain_pass
+        prompt: "Please enter password"
+        private: yes
+
+   roles:
+      - {role: pbis}

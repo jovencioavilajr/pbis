@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  author: ""
+  description: 
+  company: ""
+  license: 
+  min_ansible_version: 
+
+  platforms:
+  - name: EL
+    versions:
+     - 6
+     - 7
+  - name: Ubuntu
+    versions:
+     - trusty
+     - xenial
+
+  categories:
+  - system
+
+  dependencies: []
